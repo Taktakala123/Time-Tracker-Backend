@@ -5,7 +5,7 @@ FROM node:16.13
 WORKDIR /app
 
 # Copy package.json and package-lock.json to the working directory
-COPY package*.json ./
+COPY package*.json /app/
 
 # Install application dependencies
 RUN npm install
@@ -16,6 +16,15 @@ COPY . .
 # Expose the port your Nest.js application will run on
 EXPOSE 3000
 
+RUN npm install prisma
+
+# generated prisma files
+COPY prisma/schema.prisma ./prisma/
+
+# COPY ENV variable
+COPY .env .env
+
+RUN npx prisma generate
+
 # Command to start the Nest.js application
 CMD ["npm", "start"]
-

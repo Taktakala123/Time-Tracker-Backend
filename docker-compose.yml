@@ -1,26 +1,39 @@
-version: "3"
+version: "3.8"
 services:
   app:
     build:
       context: .
+    volumes:
+      - .:/app
+      - /app/node_modules
     ports:
       - 3000:3000 
     depends_on:
       - db
     environment:
-      DATABASE_URL: mysql://root:password@db:3306/TimeTracker
+      DATABASE_URL: mysql://root:@db:3306/TimeTracker
   db:
     image: mysql:8.0.1
     restart: always
     environment:
+      MYSQL_ROOT_PASSWORD: 
       MYSQL_DATABASE: TimeTracker
-      MYSQL_USER: postgres
-      MYSQL_PASSWORD: password
-      MYSQL_ROOT_PASSWORD : password
+      MYSQL_USER: root
+      MYSQL_PASSWORD: 
     ports:
       - '3306:3306'
     expose:
       - '3306'
 
+  phpmyadmin:
+    image: phpmyadmin:5.2.0
+    container_name: phpmyadmin
+    environment:
+        PMA_HOST: db  
+        PMA_PORT: 3306
+    ports:
+        - 8081:80
 
-
+networks:
+  mysql-phpmyadmin:
+    driver: bridge
