@@ -1,0 +1,26 @@
+version: "3"
+services:
+  app:
+    build:
+      context: .
+    ports:
+      - 3000:3000 
+    depends_on:
+      - db
+    environment:
+      DATABASE_URL: mysql://root:password@db:3306/TimeTracker
+  db:
+    image: mysql:8.0.1
+    restart: always
+    environment:
+      MYSQL_DATABASE: TimeTracker
+      MYSQL_USER: postgres
+      MYSQL_PASSWORD: password
+      MYSQL_ROOT_PASSWORD : password
+    ports:
+      - '3306:3306'
+    expose:
+      - '3306'
+
+
+
