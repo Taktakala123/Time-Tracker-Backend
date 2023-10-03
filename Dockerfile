@@ -16,13 +16,8 @@ COPY . .
 # Expose the port your Nest.js application will run on
 EXPOSE 3000
 
-RUN npm install prisma
-
 # generated prisma files
 COPY prisma/schema.prisma ./prisma/
-
-# COPY ENV variable
-COPY .env .env
 
 RUN npx prisma generate
 
