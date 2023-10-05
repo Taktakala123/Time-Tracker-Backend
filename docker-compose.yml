@@ -11,7 +11,7 @@ services:
     depends_on:
       - db
     environment:
-      DATABASE_URL: postgres://root:password@db:5432/TimeTracker  
+      DATABASE_URL: postgres://root:password@localhost:5432/TimeTracker 
   db:
     image: postgres:12
     environment:
