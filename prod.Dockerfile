@@ -1,0 +1,21 @@
+FROM node:16.13.1-alpine3.14
+WORKDIR /app
+
+RUN npm install -g @nestjs/cli
+
+COPY package*.json /app
+
+RUN npm install
+
+COPY prisma/schema.prisma ./prisma/
+
+RUN npx prisma generate
+
+COPY . .
+
+# Creates a "dist" folder with the production build
+RUN npm run build
+
+# Start the server using the production build
+CMD [ "node", "dist/main.js" ]
+
