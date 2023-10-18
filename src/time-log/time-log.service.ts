@@ -1,7 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from "src/prisma.service";
 import { TimeLog } from './time-log.model';
-import { CreateTimeDto } from 'src/time-log/dto/TimeLogDto';
 
 @Injectable()
 export class TimeLogService {

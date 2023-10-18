@@ -2,7 +2,6 @@ import { Controller, Get, Post, Put, Param ,Req,Body } from '@nestjs/common';
 import { TimeLogService } from './time-log.service';
 import { ApiTags, ApiResponse, ApiParam } from '@nestjs/swagger'; 
 import { TimeLog } from './time-log.model';
-import { CreateTimeDto } from 'src/time-log/dto/TimeLogDto';
 @Controller('') 
 @ApiTags('Time Triker') 
 export class TimeLogController {
