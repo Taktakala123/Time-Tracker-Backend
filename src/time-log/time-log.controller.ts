@@ -2,7 +2,7 @@ import { Controller, Get, Post, Put, Param ,Req,Body } from '@nestjs/common';
 import { TimeLogService } from './time-log.service';
 import { ApiTags, ApiResponse, ApiParam } from '@nestjs/swagger'; 
 import { TimeLog } from './time-log.model';
-import { CreateTimeDto } from 'src/dto/TimeLogDto';
+import { CreateTimeDto } from 'src/time-log/dto/TimeLogDto';
 @Controller('') 
 @ApiTags('Time Triker') 
 export class TimeLogController {
@@ -24,7 +24,8 @@ export class TimeLogController {
     @ApiParam({ name: 'id', description: 'Time log ID' })
     @ApiResponse({ status: 200, description: 'Stop a time log by ID' })
 
-    async stopTimeLog(@Param('id') id: number) {
+    async stopTimeLog(@Param('id') id: number){
         return this.timeLogService.stopTimeLog(id);
     }
 }
+ 
