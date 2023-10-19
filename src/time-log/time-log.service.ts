@@ -10,18 +10,18 @@ export class TimeLogService {
         return this.prisma.timeLog.findMany();
     }
 
-    async startNew(): Promise<TimeLog>  {
+    async startNew() {
         const createdTimeLog = await this.prisma.timeLog.create({
             data: {
                 StartTime: new Date(),
             },
+            
         });
-    
         return createdTimeLog;
     }
     
 
-    async stopTimeLog(id: number):Promise<TimeLog> {
+    async stopTimeLog(id: number){
         const existingTimeLog = await this.prisma.timeLog.findUnique({
             where: { id: Number(id) },
         });
