@@ -4,6 +4,7 @@ import { TimeLogController } from './time-log.controller';
 import { PrismaService } from "src/prisma.service";
 @Module({
   providers: [TimeLogService,PrismaService],
-  controllers: [TimeLogController]
+  controllers: [TimeLogController],
+  exports:[TimeLogService]
 })
 export class TimeLogModule {}
